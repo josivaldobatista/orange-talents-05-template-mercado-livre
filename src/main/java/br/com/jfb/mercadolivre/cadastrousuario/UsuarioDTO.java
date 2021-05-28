@@ -6,10 +6,13 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Length;
 
+import br.com.jfb.mercadolivre.shared.valiations.UniqueValueValid;
+
 public class UsuarioDTO {
 
   @Email
   @NotBlank
+  @UniqueValueValid(domainClass = Usuario.class, fieldName = "email", message = "E-mail deve ser único")
   private String email;
 
   @NotBlank
