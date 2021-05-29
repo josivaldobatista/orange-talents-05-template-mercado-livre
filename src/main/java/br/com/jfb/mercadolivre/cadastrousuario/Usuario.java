@@ -46,6 +46,10 @@ public class Usuario {
     return senha;
   }
 
+  public LocalDateTime getInstanteCriacao() {
+    return instanteCriacao;
+  }
+
   @Override
   public int hashCode() {
     final int prime = 31;

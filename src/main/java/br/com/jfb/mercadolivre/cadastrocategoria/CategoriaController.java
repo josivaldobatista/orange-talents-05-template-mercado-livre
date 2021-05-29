@@ -1,4 +1,4 @@
-package br.com.jfb.mercadolivre.cadastrousuario;
+package br.com.jfb.mercadolivre.cadastrocategoria;
 
 import java.net.URI;
 
@@ -14,21 +14,21 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
-@RequestMapping(value = "/usuarios")
-public class UsuarioController {
+@RequestMapping(value = "/categorias")
+public class CategoriaController {
 
-  @Autowired
-  private UsuarioRepository repository;
-  
+	@Autowired
+  private CategoriaRepository repository;
+
   @PostMapping
   @Transactional
-  public ResponseEntity<UsuarioResponse> cadastrar(@RequestBody @Valid UsuarioRequest dto) {
-    Usuario entity = dto.toModel();
-    entity = repository.save(entity);
+	public ResponseEntity<CategoriaResponse> cadastrar(@RequestBody @Valid CategoriaRequest request) {
+		Categoria entity = request.toModel(repository);
+		entity = repository.save(entity);
 
-    URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 			.buildAndExpand(entity.getId()).toUri();
 
-    return ResponseEntity.created(uri).body(new UsuarioResponse(entity));
-  }
+		return ResponseEntity.created(uri).body(new CategoriaResponse(entity));
+	}
 }

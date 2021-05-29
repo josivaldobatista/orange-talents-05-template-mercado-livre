@@ -8,7 +8,7 @@ import org.hibernate.validator.constraints.Length;
 
 import br.com.jfb.mercadolivre.shared.valiations.UniqueValueValid;
 
-public class UsuarioDTO {
+public class UsuarioRequest {
 
   @Email
   @NotBlank
@@ -20,15 +20,15 @@ public class UsuarioDTO {
   private String senha;
 
   @Deprecated
-  public UsuarioDTO() {
+  public UsuarioRequest() {
   }
 
-  public UsuarioDTO(Long id, @Email @NotBlank String email, @NotBlank @Size(min = 6) String senha) {
+  public UsuarioRequest(Long id, @Email @NotBlank String email, @NotBlank @Size(min = 6) String senha) {
     this.email = email;
     this.senha = senha;
   }
 
-  public UsuarioDTO(Usuario entity) {
+  public UsuarioRequest(Usuario entity) {
     email = entity.getEmail();
     senha = entity.getSenha();
   }
