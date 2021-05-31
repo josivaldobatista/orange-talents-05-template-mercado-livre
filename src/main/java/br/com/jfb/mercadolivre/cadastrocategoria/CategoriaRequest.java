@@ -26,6 +26,10 @@ public class CategoriaRequest {
     this.categoriaMaeId = categoriaMaeId;
   }
 
+  public CategoriaRequest(Categoria entity) {
+    nome = entity.getNome();
+  }
+
   public Categoria toModel(CategoriaRepository repository) {
     Categoria categoria = new Categoria(nome);
     if (categoriaMaeId != null) {
